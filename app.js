@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const port = 3000
-const urlmongo = 'mongodb://localhost:27017/sampleDB'
+const urlmongo = 'mongodb+srv://database:database@database-c6k6t.gcp.mongodb.net/seacker?retryWrites=true&w=majority'
 const router = require('./routes')
 
 
