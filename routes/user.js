@@ -1,9 +1,6 @@
 const router = require('express').Router()
+const Controller = require('../controllers/user')
 
-router.get('/test', (req, res) => {
-    res.status(200).json({
-        message: 'Test route user'
-    })
-})
+router.get('/test', Controller.test)
 
 module.exports = router
