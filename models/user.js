@@ -25,7 +25,6 @@ const userSchema = new mongoose.Schema({
         ]
     },
     password: String,
-    seatbook: mongoose.SchemaType
 })
 
 userSchema.pre('save', function(next){
