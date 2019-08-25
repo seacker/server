@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const seatSchema = new mongoose.Schema({
+const seatSchema = new mongoose.Schema({ 
     blockName: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Block',

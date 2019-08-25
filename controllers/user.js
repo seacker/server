@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
+const {sign} = require('../helpers/jwt')
 
 class Controller {
     static test(req, res) {
@@ -16,9 +17,18 @@ class Controller {
             })
             .then( (user) => {
                 if (user) {
+                    // console.log(user)
                     if (bcrypt.compareSync(req.body.password, user.password)) {
-                        const token = jwt.sign({ nik: user.nik, id: user.id})
+                        console.log("berhasil ke compare")
+                        console.log(user)
+                        let userLogin={
+                            id : user._id,
+                            nik : user.nik
+                        }
+                        const token = sign(userLogin)
+                        console.log(token)
                         res.status(200).json({
+                            user,
                             token
                         })
                     } else {
@@ -33,6 +43,10 @@ class Controller {
                         message: 'Unidentified NIK / Password'
                     })
                 }
+            })
+            .catch(err => {
+                console.log("masuk error sini")
+                console.log(err)
             })
         } else {
             res.status(400).json({
