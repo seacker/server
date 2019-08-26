@@ -3,6 +3,29 @@ const bcrypt = require('bcryptjs')
 
 const userSchema = new mongoose.Schema({
     name: String,
+    email : {
+        type : String,
+    required : true,
+    validate : [{
+      validator : function(email){
+        return User.findOne({email : email})
+        .then(data => {
+          if(data) return false
+          else return true
+        })
+        .catch(err => {
+          throw err
+        })
+      }
+    },
+    {
+      validator : function(email){
+        let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        return re.test(email)
+      },
+      message: props => `Email is invalid`
+    }]
+    },
     nik: {
         type: String,
         validate: [
