@@ -36,13 +36,13 @@ class Controller {
                     if(found.taker){
                         console.log(found, 'ini ada takernya')
                         // delete found.taker;
-                        found.taker = {}
+                        // found.taker = {}
                         console.log(found, "ini foun updatedddd")
-                        // Seat.findByIdAndUpdate(id, found, {new: true})
-                        //     .then(updated => {
-                        //         console.log(updated)
-                        //         res.status(200).json(updated)
-                        //     })
+                        Seat.updateOne({_id : id}, {taker : null}, {new: true})
+                            .then(updated => {
+                                console.log(updated)
+                                res.status(200).json(updated)
+                            })
                     } else {
                         console.log(found, 'ini gakada takernyaaaa')
                         console.log(req.decoded.id)
