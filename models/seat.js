@@ -10,7 +10,9 @@ const seatSchema = new mongoose.Schema({
     taker: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    coorX: Number,
+    coorY: Number
 })
 
 const Seat = mongoose.model('Seat', seatSchema)

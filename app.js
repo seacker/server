@@ -11,7 +11,7 @@ const urlmongo = 'mongodb+srv://database:database@database-c6k6t.gcp.mongodb.net
 const router = require('./routes')
 const urllocal = `mongodb://localhost:27017/seacker`
 
-mongoose.connect(urllocal, {useNewUrlParser: true, useFindAndModify : false})
+mongoose.connect(urlmongo, {useNewUrlParser: true, useFindAndModify : false})
 .then(() => {
     console.log('mongoodb connected')
 })
