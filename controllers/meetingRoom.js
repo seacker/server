@@ -70,5 +70,19 @@ class MeetingBook{
                 })
             })
     }
+
+    static getSchedule(req, res) {
+        Meeting
+            .find({})
+            .populate()
+            .then(  (schedules) => {
+                res.status(200).json(schedules)
+            })
+            .catch( (err) => {
+                res.status(err.status).json({
+                    message: err.message
+                })
+            })
+    }
 }
 module.exports = MeetingBook
