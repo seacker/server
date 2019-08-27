@@ -7,5 +7,6 @@ const authentication = require('../middlewares/authentication.js')
 router.get('/', SeatController.fetchData)
 router.post('/', SeatController.create)
 router.patch('/changeState/:id', authentication, SeatController.updateStatusSeat)
+router.post('/createData', SeatController.addManyData)
 
 module.exports = router

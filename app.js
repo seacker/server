@@ -5,7 +5,7 @@ if(process.env.NODE_ENV === 'development' || !process.env.NODE_ENV){
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const port = 3000
+const port = 3001
 const cors = require('cors')
 const urlmongo = 'mongodb+srv://database:database@database-c6k6t.gcp.mongodb.net/seacker?retryWrites=true&w=majority'
 const router = require('./routes')

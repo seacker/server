@@ -85,6 +85,25 @@ class Controller {
             message: 'Seat route example'
         })
     }
+
+    static addManyData(req, res){
+        for (let i = 1; i <= 30; i++) {
+            Seat.create({
+                blockName : `5d61fe5639d4fd25b42c1dce`,
+                index : i
+            })
+            .then(created => {
+                console.log(created)
+            })
+            .catch(err => {
+                res.status(500).json({
+                    message : `liat console`
+                })
+            })
+
+        }
+
+    }
 }
 
 module.exports = Controller
