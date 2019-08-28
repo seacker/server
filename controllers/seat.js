@@ -86,6 +86,18 @@ class Controller {
         })
     }
 
+    static getOneSeat(req, res){
+        Seat.findById(req.params.id)
+            .then(found => {
+                res.status(200).json(found)
+            })
+            .catch(err => {
+                res.status(500).json({
+                    message : err
+                })
+            })
+    }
+
     static addManyData(req, res){
         for (let i = 1; i <= 30; i++) {
             Seat.create({
