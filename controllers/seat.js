@@ -2,8 +2,8 @@ const Seat = require('../models/seat.js')
 
 class Controller {
     static create(req, res){
-        const {blockName, index} = req.body
-        const newSeat = {blockName, index}
+        const {blockName, index, coorX, coorY} = req.body
+        const newSeat = {blockName, index, coorX, coorY}
         Seat.create(newSeat)
             .then(data => {
                 console.log(data)
