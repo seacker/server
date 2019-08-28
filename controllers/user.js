@@ -64,6 +64,7 @@ class Controller {
         User.create({
             name: req.body.name,
             nik: req.body.nik,
+            email : req.body.email,
             password: req.body.password
         })
         .then( (user) => {
