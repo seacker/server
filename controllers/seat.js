@@ -28,6 +28,7 @@ class Controller {
     }
 
     static updateStatusSeat(req, res){
+        console.log('update status')
         const id = req.params.id
         Seat.findById(id)
             .then(found => {
@@ -87,7 +88,6 @@ class Controller {
     }
 
     static getOneSeat(req, res){
-        console.log('masuk getone')
         Seat.findById(req.params.id).populate('blockName')
             .then(found => {
                 res.status(200).json(found)
