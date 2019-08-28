@@ -11,6 +11,7 @@ class Controller {
     }
 
     static login(req, res) {
+        console.log('masuk login coba route')
         if (req.body.nik) {
             User.findOne({
                 nik: req.body.nik
@@ -21,6 +22,7 @@ class Controller {
                     if (bcrypt.compareSync(req.body.password, user.password)) {
                         console.log("berhasil ke compare")
                         console.log(user)
+                        console.log("nyawwwwwwww22")
                         let userLogin={
                             id : user._id,
                             nik : user.nik
@@ -47,6 +49,9 @@ class Controller {
             .catch(err => {
                 console.log("masuk error sini")
                 console.log(err)
+                res.status(400).json({
+                    message: err.message
+                })
             })
         } else {
             res.status(400).json({
