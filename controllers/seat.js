@@ -87,7 +87,8 @@ class Controller {
     }
 
     static getOneSeat(req, res){
-        Seat.findById(req.params.id)
+        console.log('masuk getone')
+        Seat.findById(req.params.id).populate('blockName')
             .then(found => {
                 res.status(200).json(found)
             })
