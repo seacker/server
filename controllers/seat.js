@@ -10,20 +10,7 @@ class Controller {
             })
             .catch(err => {
                 console.log(err)
-            })
-        // console.log(newSeat)
-        // Seat.create(newSeat)
-        //     .then(create=> {
-        //         // res.status(201).json(create)
-        //         console.log(create)
-        //         console.log("aku berhasil di create")
-        //     })
-        //     .catch(err => {
-        //         console.log(err, "error nich")
-        //         res.status(500).json({
-        //             message : err
-        //         })
-        //     })  
+            })  
     }
 
     static updateStatusSeat(req, res){
@@ -41,18 +28,30 @@ class Controller {
                                 res.status(200).json(updated)
                             })
                     } else {
-                        console.log('gakada takernyaaaa')
+                        console.log("gak ada takernya")
+                        let flag = false
                         console.log(req.decoded.id)
-                        let updateTaker = {taker : req.decoded.id}
-
-                        Seat.findByIdAndUpdate(id, updateTaker, {new : true})
-                            .then(updated => {
-                                console.log("success update nambah taker")
-                                res.status(200).json(updated)
+                        Seat.find({taker : req.decoded.id})
+                            .then(found => {
+                                console.log(found)
+                                if(found.length > 0){
+                                    console.log(found)
+                                    res.status(400).json({
+                                        message : `Cannot checkin because u already checkin`
+                                    })
+                                } else {
+                                    console.log("tidak found")
+                                    let updateTaker = {taker : req.decoded.id}
+                                    Seat.findByIdAndUpdate(id, updateTaker, {new : true})
+                                        .then(updated => {
+                                            console.log("success update nambah taker")
+                                            res.status(200).json(updated)
+                                    })
+                                    console.log(found)
+                                }
                             })
+                            
                     }
-                    found.taker = {}
-                    
                 } else {
                     console.log("test 123")
                 }
