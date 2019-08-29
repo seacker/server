@@ -42,12 +42,13 @@ class MeetingBook{
 
     static bookRoom (req, res){
         console.log(req.decoded.id)
-        const {date, arrRooms, startBook, endBook} = req.body
-        const arrRoomsSplitted = arrRooms.split(',')
+        console.log(req.body.data)
+        const {date, arrRooms, startBook, endBook} = req.body.data
+        // const arrRoomsSplitted = arrRooms.split(',')       
         const newBooking = {
-            date, arrRooms : arrRoomsSplitted, startBook, endBook, UserBook : req.decoded.id
+            date, arrRooms, startBook, endBook, UserBook : req.decoded.id
         }
-        // console.log(newBooking)
+        console.log(newBooking)
         Meeting.create(newBooking)
             .then(booked => {
                 console.log("Booking Success!")
