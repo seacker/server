@@ -78,8 +78,8 @@ class MeetingBook{
         console.log("ku masuk sini halo ")
         Meeting
             .find({})
-            .populate()
-            .then(  (schedules) => {
+            .populate('UserBook')
+            .then((schedules) => {
                 res.status(200).json(schedules)
             })
             .catch( (err) => {
