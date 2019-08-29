@@ -45,7 +45,7 @@ class Controller {
                             })
                     } else {
                         console.log(found, 'ini gakada takernyaaaa')
-                        console.log(req.decoded.id)
+                        console.log(req.decoded.id, 'decoded from update status')
 
                         let updateTaker = {taker : req.decoded.id}
                         Seat.findByIdAndUpdate(id, updateTaker, {new : true})
@@ -71,6 +71,7 @@ class Controller {
     static fetchData(req, res){
         Seat.find({}).populate('blockName').populate('taker')
             .then(allSeat => {
+                console.log('ini get data seats: ', allSeat)
                 res.status(200).json(allSeat)
             })
             .catch(err => {
@@ -87,8 +88,10 @@ class Controller {
     }
 
     static getOneSeat(req, res){
+        console.log('controller onedata seat: ', req.params.id)
         Seat.findById(req.params.id)
             .then(found => {
+                console.log('data kursi by id: ', found)
                 res.status(200).json(found)
             })
             .catch(err => {
