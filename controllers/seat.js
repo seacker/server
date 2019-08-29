@@ -6,7 +6,6 @@ class Controller {
         const newSeat = {blockName, index, coorX, coorY}
         Seat.create(newSeat)
             .then(data => {
-                console.log(data)
                 res.status(201).json(data)
             })
             .catch(err => {
@@ -35,23 +34,20 @@ class Controller {
                console.log(found)
                 if(found){
                     if(found.taker){
-                        console.log(found, 'ini ada takernya')
-                        // delete found.taker;
-                        // found.taker = {}
-                        console.log(found, "ini foun updatedddd")
+                        console.log("ada taker")
                         Seat.updateOne({_id : id}, {taker : null}, {new: true})
                             .then(updated => {
-                                console.log(updated)
+                                console.log("success update apus taker")
                                 res.status(200).json(updated)
                             })
                     } else {
-                        console.log(found, 'ini gakada takernyaaaa')
+                        console.log('gakada takernyaaaa')
                         console.log(req.decoded.id)
-
                         let updateTaker = {taker : req.decoded.id}
+
                         Seat.findByIdAndUpdate(id, updateTaker, {new : true})
                             .then(updated => {
-                                console.log(updated)
+                                console.log("success update nambah taker")
                                 res.status(200).json(updated)
                             })
                     }

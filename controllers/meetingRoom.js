@@ -47,9 +47,10 @@ class MeetingBook{
         const newBooking = {
             date, arrRooms : arrRoomsSplitted, startBook, endBook, UserBook : req.decoded.id
         }
-        console.log(newBooking)
+        // console.log(newBooking)
         Meeting.create(newBooking)
             .then(booked => {
+                console.log("Booking Success!")
                 res.status(201).json(booked)
             })
             .catch(err => {
@@ -62,6 +63,7 @@ class MeetingBook{
     static cancel(req, res){
         Meeting.findByIdAndDelete(req.params.id)
             .then(deleted => {
+                console.log("Success cancel!!!")
                 res.status(200).json(deleted)
             })
             .catch(err => {
