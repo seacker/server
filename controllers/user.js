@@ -4,12 +4,6 @@ const bcrypt = require('bcryptjs')
 const {sign} = require('../helpers/jwt')
 
 class Controller {
-    static test(req, res) {
-        res.status(200).json({
-            message: 'User route example'
-        })
-    }
-
     static login(req, res) {
         console.log('masuk login coba route')
         if (req.body.nik) {
@@ -20,9 +14,7 @@ class Controller {
                 if (user) {
                     // console.log(user)
                     if (bcrypt.compareSync(req.body.password, user.password)) {
-                        console.log("berhasil ke compare")
-                        console.log(user)
-                        console.log("nyawwwwwwww22")
+                        console.log("Success Login")
                         let userLogin={
                             id : user._id,
                             nik : user.nik
