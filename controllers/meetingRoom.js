@@ -74,6 +74,7 @@ class MeetingBook{
     }
 
     static getSchedule(req, res) {
+        console.log("ku masuk sini halo ")
         Meeting
             .find({})
             .populate()
